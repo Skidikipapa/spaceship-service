@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "c946d065-f506-456e-ba5f-87793269dfe4",
+		"name": "Spaceship",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29873748"
+	},
+	"item": [
+		{
+			"name": "Get spaceship by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spaceship/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spaceship",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find spaceship by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spaceship/search/mill",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spaceship",
+						"search",
+						"milladwadawd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete spaceship",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spaceship/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spaceship",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all spaceships",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spaceship?sort=name&size=5&page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spaceship"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create spaceship",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"my-new-spaceship\",\n    \"capacity\": 10,\n    \"fuelConsumption\": 1.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/spaceship",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spaceship"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update spaceship",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"capacity\": 100,\n    \"fuelConsumption\": 90.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/spaceship/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spaceship",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

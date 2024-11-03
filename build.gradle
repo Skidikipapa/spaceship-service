@@ -1,0 +1,80 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.flywaydb.flyway' version '6.0.6'
+}
+
+group = 'com.aubay.test'
+version = '0.0.1-SNAPSHOT'
+
+apply plugin: 'groovy'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+
+    flywayMigration
+
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+def dbName = 'spaceship_data'
+def dbUserName = 'spaceship'
+def dbUserPassword = 'spaceship'
+def dbSchemaName = 'spaceship'
+
+flyway {
+
+    url = "jdbc:postgresql://localhost:5432/${dbName}"
+    user = "${dbUserName}"
+    password = "${dbUserPassword}"
+    schemas = ["${dbSchemaName}"]
+    configurations = [ 'flywayMigration' ]
+
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-activemq'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-database-postgresql'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    flywayMigration 'org.postgresql:postgresql'
+
+    testImplementation(
+            'org.codehaus.groovy:groovy-all:3.0.19',
+            'org.spockframework:spock-core:2.3-groovy-3.0',
+            'com.athaydes:spock-reports:2.3.0-groovy-3.0',
+            'cglib:cglib-nodep:+',
+    )
+}
+
+jar {
+    into 'flyway', {
+        from 'flyway'
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
